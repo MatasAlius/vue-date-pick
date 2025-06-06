@@ -1,20 +1,26 @@
 {
   "name": "@matasalius/vue-date-pick",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/@matasalius/vue-date-pick.umd.cjs",
-  "module": "./dist/@matasalius/vue-date-pick.js",
+  "main": "./dist/vue-date-pick.umd.cjs",
+  "module": "./dist/vue-date-pick.js",
   "exports": {
     ".": {
-      "import": "./dist/@matasalius/vue-date-pick.js",
-      "require": "./dist/@matasalius/vue-date-pick.cjs"
+      "import": "./dist/vue-date-pick.js",
+      "require": "./dist/vue-date-pick.cjs"
     },
-    "./style.css": "./dist/@matasalius/style.css"
+    "./style.css": "./dist/style.css"
   },
-  "types": "./dist/@matasalius/index.d.ts",
+  "author": "MatasAlius",
+  "repository": {
+    "type": "git",
+    "URL": "https://github.com/MatasAlius/vue-date-pick"
+  },
+  "license": "MIT",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build && vue-tsc",
