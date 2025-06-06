@@ -1,5 +1,5 @@
 <template>
-  <div class="input-wrapper">
+  <div class="input-area">
     <div id="select-date">
       <div
         id="select-date"
@@ -10,7 +10,7 @@
         @keydown.esc="onClose"
       >
         <div class="input-row">
-          <div class="input-icon-right">
+          <div class="input-icon">
             <slot name="icon">
               <IconCalendar />
             </slot>
@@ -20,8 +20,8 @@
               {{ displayValue }}
             </slot>
           </div>
-          <div class="input-icon-right">
-            <IconArrow :class="{ 'rotate-180': open }" />
+          <div class="input-icon">
+            <IconArrow :class="{ 'icon-rotate-180': open }" />
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
       <div class="grid grid-cols-2">
         <span class="calendar-year-nav">
           <IconArrow
-            class="rotate-90 pointer"
+            class="icon-rotate-90 pointer"
             :class="{ invisible: parseInt(setValue.year) <= minYear }"
             @click="updateYear(-1)"
           />
@@ -38,7 +38,7 @@
             {{ setValue.year }}
           </span>
           <IconArrow
-            class="rotate-270 pointer"
+            class="icon-rotate-270 pointer"
             :class="{
               invisible: noNextYear,
             }"
@@ -54,14 +54,14 @@
       <template v-if="showMonthView">
         <div class="calendar-months-wrapper">
           <div class="grid grid-cols-3">
-            <span v-for="(name, index) in monthNames" :key="index" class="calendar-month-cell">
+            <span v-for="(name, idx) in monthNames" :key="idx" class="calendar-month-cell">
               <span
                 class="calendar-month-btn"
                 :class="{
-                  'calendar-month-btn-today': index === today.getMonth(),
-                  'calendar-month-btn-selected': index === setValue.month,
+                  'calendar-month-btn-today': idx === today.getMonth(),
+                  'calendar-month-btn-selected': idx === setValue.month,
                 }"
-                @click="selectMonth(index)"
+                @click="selectMonth(idx)"
               >
                 {{ name }}
               </span>
@@ -70,17 +70,17 @@
         </div>
       </template>
       <template v-else>
-        <div class="calendar-days-wrapper" @mouseleave="handleLeave" @mouseup="handleEnd">
-          <div v-for="(week, index) in calendarView" :key="index" class="calendar-week-row">
-            <template v-if="index === 0">
-              <span v-for="(name, index2) in week" :key="index2" class="calendar-weekday-cell">
+        <div class="calendar-days-wrapper" @mouseleave="handleEnd" @mouseup="handleEnd">
+          <div v-for="(week, idx) in calendarView" :key="idx" class="calendar-week-row">
+            <template v-if="idx === 0">
+              <span v-for="(name, idx2) in week" :key="idx2" class="calendar-weekday-cell">
                 {{ name }}
               </span>
             </template>
             <template v-else>
               <div
-                v-for="(day, index2) in week"
-                :key="index2"
+                v-for="(day, idx2) in week"
+                :key="idx2"
                 class="calendar-day-cell"
                 :class="{
                   'day-highlight': intervalHighlight(day),
@@ -309,9 +309,6 @@ export default {
     handleEnd() {
       this.drag = false
     },
-    handleLeave() {
-      this.drag = false
-    },
     handle(day) {
       if (Object.keys(this.startVal).length === 0) return
       if (this.drag) {
@@ -536,7 +533,7 @@ export default {
 .flex {
   display: flex;
 }
-.input-icon-right {
+.input-icon {
   display: flex;
   align-items: center;
 }
@@ -545,13 +542,13 @@ export default {
   width: 1.25rem;
   height: 1.25rem;
 }
-.rotate-180 {
+.icon-rotate-180 {
   transform: rotate(180deg);
 }
-.rotate-90 {
+.icon-rotate-90 {
   transform: rotate(90deg);
 }
-.rotate-270 {
+.icon-rotate-270 {
   transform: rotate(270deg);
 }
 .with-fade::before {
@@ -565,17 +562,17 @@ export default {
   pointer-events: none;
   background-image: linear-gradient(to left, rgba(var(--fade-clr)), rgb(255, 255, 255, 0));
 }
-.input-wrapper {
+.input-area {
   position: relative;
   font-family: sans-serif;
   color: #000000;
   width: 100%;
 }
-.input-wrapper {
+.input-area {
   max-width: min(311px, calc(100vw - 4rem));
 }
 @media (min-width: 768px) {
-  .input-wrapper {
+  .input-area {
     max-width: 20rem;
   }
 }
