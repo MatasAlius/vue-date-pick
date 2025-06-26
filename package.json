@@ -1,6 +1,6 @@
 {
   "name": "@matasalius/vue-date-pick",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "files": [
     "dist"
@@ -17,10 +17,11 @@
   "author": "MatasAlius",
   "repository": {
     "type": "git",
-    "URL": "https://github.com/MatasAlius/vue-date-pick"
+    "URL": "git+https://github.com/MatasAlius/vue-date-pick.git"
   },
   "license": "MIT",
   "types": "./dist/index.d.ts",
+  "keywords": ["date pick", "date range", "date selection"],
   "scripts": {
     "dev": "vite",
     "build": "vite build && vue-tsc",

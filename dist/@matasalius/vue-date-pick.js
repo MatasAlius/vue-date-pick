@@ -731,7 +731,7 @@ const he = {
       default: "en"
     }
   },
-  emits: ["open", "close", "update"],
+  emits: ["open", "close", "update:modelValue"],
   data() {
     return {
       selected: {},
@@ -875,14 +875,14 @@ const he = {
       this.open = !0, ((t = this.modelValue) == null ? void 0 : t.length) > 1 && (this.selected.value = [this.modelValue[0], this.modelValue[1]]);
     },
     onApply() {
-      !this.selected.value || this.selected.value.length < 2 || (this.displayValue = this.parseValue(), this.open = !1, this.$emit("update", this.selected.value));
+      !this.selected.value || this.selected.value.length < 2 || (this.displayValue = this.parseValue(), this.open = !1, this.$emit("update:modelValue", this.selected.value));
     },
     clearField(t) {
       this.startVal = {}, this.endVal = {}, this.setValue = {
         year: parseInt(this.localDate(this.today.getTime() / 1e3, { format: "YYYY" })),
         month: parseInt(this.localDate(this.today.getTime() / 1e3, { format: "M" })) - 1,
         day: parseInt(this.localDate(this.today.getTime() / 1e3, { format: "D" }))
-      }, this.selected.value = [], this.displayValue = this.parseValue(), t !== !0 && this.$emit("update", this.selected.value);
+      }, this.selected.value = [], this.displayValue = this.parseValue(), t !== !0 && this.$emit("update:modelValue", this.selected.value);
     },
     onClose() {
       const t = this.modelValue[0] ? this.unixToDate(this.modelValue[0]) : {}, n = this.modelValue[1] ? this.unixToDate(this.modelValue[1]) : {};

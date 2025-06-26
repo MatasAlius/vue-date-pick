@@ -190,7 +190,7 @@ export default {
       default: 'en',
     },
   },
-  emits: ['open', 'close', 'update'],
+  emits: ['open', 'close', 'update:modelValue'],
   data() {
     return {
       selected: {},
@@ -456,7 +456,7 @@ export default {
       if (!this.selected.value || this.selected.value.length < 2) return
       this.displayValue = this.parseValue()
       this.open = false
-      this.$emit('update', this.selected.value)
+      this.$emit('update:modelValue', this.selected.value)
     },
     clearField(ignore) {
       this.startVal = {}
@@ -469,7 +469,7 @@ export default {
       this.selected.value = []
       this.displayValue = this.parseValue()
       if (ignore !== true) {
-        this.$emit('update', this.selected.value)
+        this.$emit('update:modelValue', this.selected.value)
       }
     },
     onClose() {
